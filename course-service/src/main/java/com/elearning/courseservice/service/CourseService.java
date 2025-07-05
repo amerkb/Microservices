@@ -20,8 +20,8 @@ public class CourseService {
 
     @Transactional
     public Course create(Course course, String token) {
-        String role = userClient.getRole(token);
-        Long trainerId = userClient.getUserId(token);
+        String role = userClient.getRole(token).join();
+        Long trainerId = userClient.getUserId(token).join();
 
         if (!"TRAINER".equalsIgnoreCase(role)) {
             throw new RuntimeException("Only trainers can create courses");
@@ -34,7 +34,7 @@ public class CourseService {
 
     @Transactional
     public Course approve(Long courseId, String token) {
-        String role = userClient.getRole(token);
+        String role = userClient.getRole(token).join();
 
         if (!"ADMIN".equalsIgnoreCase(role)) {
             throw new RuntimeException("Only admins can approve courses");
@@ -49,8 +49,8 @@ public class CourseService {
 
 
     public List<Course> list(String token) {
-        String role = userClient.getRole(token);
-        Long trainerId = userClient.getUserId(token);
+        String role = userClient.getRole(token).join();
+        Long trainerId = userClient.getUserId(token).join();
 
         if ("ADMIN".equalsIgnoreCase(role)) {
             return repo.findAll();

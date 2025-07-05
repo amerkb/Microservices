@@ -80,7 +80,7 @@ public class UserController {
     }
     @GetMapping("/instance")
     public String instanceInfo() {
-        return "Responded 11 from instance: " + UUID.randomUUID();
+        return "Responded 22 from instance: " + UUID.randomUUID();
     }
 
 }

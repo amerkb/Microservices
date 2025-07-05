@@ -1,7 +1,6 @@
 package com.elearning.examservice.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -9,18 +8,19 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Submission {
+public class UserAnswer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private Long courseId;
-
-    @NotNull
     private Long userId;
 
-    private int score;
-    private boolean passed;
+    private Long courseId;
+
+    private Long questionId;
+
+    private String answer;
+
+    private boolean correct;
 }

@@ -1,4 +1,4 @@
-package com.elearning.examservice.client;
+package com.elearning.subscriptionservice.client;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,5 @@
 package com.elearning.examservice.service;
 
-import com.elearning.examservice.client.CourseClient;
 import com.elearning.examservice.client.UserClient;
 import com.elearning.examservice.dto.CreateQuestionRequest;
 import com.elearning.examservice.model.Question;
@@ -16,11 +15,10 @@ public class QuestionService {
 
     private final QuestionRepository repo;
     private final UserClient userClient;
-    private final CourseClient courseClient;
 
     public Question create(CreateQuestionRequest request, String token) {
-        String role = userClient.getRole(token);
-        Long trainerId = userClient.getUserId(token);
+        String role = userClient.getRole(token).join();
+        Long trainerId = userClient.getUserId(token).join();
 
         if (!"TRAINER".equalsIgnoreCase(role)) {
             throw new RuntimeException("Only trainers can add questions");
